@@ -19,7 +19,7 @@ t.test(subset(leaders, warbefore == 1)$politybefore, subset(leaders, warbefore =
 
 mean(subset(leaders, warbefore == 1)$age)
 mean(subset(leaders, warbefore == 0)$age)
-t.test(subset(leaders, warbefore == 1)$age, subset(leaders, warbefore = 0)$age)
+t.test(subset(leaders, warbefore == 1)$age, subset(leaders, warbefore == 0)$age)
 
 leaders$warafter <- ifelse(leaders$civilwarafter == 1 | leaders$interwarafter == 1, 1, 0)
 t.test(subset(leaders, success == 1)$polityafter, subset(leaders, success == 1)$politybefore)
