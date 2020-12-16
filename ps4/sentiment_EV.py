@@ -1,15 +1,21 @@
 import json
+import os
+from dotenv import load_dotenv
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions, EntitiesOptions, KeywordsOptions
 import pandas as pd
+
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 dataset = pd.read_csv('plugshare-small.csv')
 
 review_data = dataset
 review_data = review_data[review_data['Review'].notna()].copy()
 
 def get_sentiment(input):
-    authenticator = IAMAuthenticator('vpVCzfGx6R83YgKE_vz_aoldL3tDjT_F3svSZbv5YSya')
+    authenticator = IAMAuthenticator(SECRET_KEY)
     natural_language_understanding = NaturalLanguageUnderstandingV1(
         version='2020-08-01',
         authenticator=authenticator
