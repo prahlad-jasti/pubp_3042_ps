@@ -1,0 +1,6 @@
+sentiment = read.csv('final-dataset.csv')
+sentiment$Score <- as.numeric(as.character(sentiment$Score))
+summary(sentiment$Score)
+sd(sentiment$Score, na.rm = TRUE)
+nrow(subset(sentiment, Rating == True.Sentiment))/nrow(sentiment$Score)
+t.test(subset(sentiment, paid == 0)$Score, subset(sentiment, paid == 1)$Score)
